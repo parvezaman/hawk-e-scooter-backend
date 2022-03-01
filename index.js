@@ -22,6 +22,8 @@ async function run() {
         const database = client.db("hawk-e-scooter-database");
         const test = database.collection("test");
         const dashboardCollection = database.collection("dashboardCollection");
+        const usersCollection = database.collection("usersCollection");
+        const scootersCollection = database.collection("scootersCollection");
 
 
         // Dashboard 
@@ -29,13 +31,41 @@ async function run() {
             const cursor = dashboardCollection.find({});
             const dashboard = await cursor.toArray();
             res.send(dashboard);
-        })
+        });
 
         app.post('/dashboard', async (req, res) => {
             const dashboard = req.body;
             const result = await dashboardCollection.insertOne(dashboard);
             res.json(result);
-        })
+        });
+
+        // users collection
+
+        app.get('/users', async (req, res) => {
+            const cursor = usersCollection.find({});
+            const users = await cursor.toArray();
+            res.send(users);
+        });
+
+        app.post('/users', async (req, res) => {
+            const user = req.body;
+            const result = await usersCollection.insertOne(user);
+            res.json(result);
+        });
+
+        // scooters collection
+
+        app.get('/scooters', async (req, res) => {
+            const cursor = scootersCollection.find({});
+            const scooters = await cursor.toArray();
+            res.send(scooters);
+        });
+
+        app.post('/scooters', async (req, res) => {
+            const scooter = req.body;
+            const result = await scootersCollection.insertOne(scooter);
+            res.json(result);
+        });
 
         // const result = await test.insertOne(doc);
         // console.log(`A document was inserted with the _id: ${result.insertedId}`);
