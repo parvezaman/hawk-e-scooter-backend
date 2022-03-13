@@ -67,6 +67,19 @@ async function run() {
             res.json(result);
         });
 
+        // payment
+        // report
+        // coupon
+        // SCL social media logins
+        // product category
+        // package/special 
+        // tickets/customer complains
+        // customer database
+        // messaging
+        // customer wallet
+        // sell dashboard (how many sells are happening)
+        // stock (and also waiting time to get the product)
+
         // const result = await test.insertOne(doc);
         // console.log(`A document was inserted with the _id: ${result.insertedId}`);
     } finally {
