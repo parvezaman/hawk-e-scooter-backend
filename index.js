@@ -4,6 +4,9 @@ const app = express()
 const cors = require('cors');
 require('dotenv').config();
 const port = process.env.PORT || 5000;
+var bodyParser = require('body-parser');
+app.use(bodyParser.json({limit: "50mb"}));
+app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}));
 
 // Middleware
 app.use(cors());
@@ -24,6 +27,7 @@ async function run() {
         const dashboardCollection = database.collection("dashboardCollection");
         const usersCollection = database.collection("usersCollection");
         const scootersCollection = database.collection("scootersCollection");
+        const packagesCollection = database.collection("packagesCollection");
 
 
         // Dashboard 
@@ -66,6 +70,19 @@ async function run() {
             const result = await scootersCollection.insertOne(scooter);
             res.json(result);
         });
+
+        // Packages collection
+        app.get('/packages', async (req, res) => {
+            const cursor = packagesCollection.find({});
+            const packages = await cursor.toArray();
+            res.send(packages);
+        });
+
+        app.post('/packages', async (req, res) => {
+            const package = req.body;
+            const result = await packagesCollection.insertOne(package);
+            res.json(result);
+        })
 
         // payment
         // report
