@@ -94,8 +94,6 @@ async function run() {
       const id = req.params.id;
       const query = { _id: ObjectId(id) };
       const result = await packagesCollection.deleteOne(query);
-
-      //   console.log("deleting item with id", id);
       res.json(result);
     });
     // just a comment
