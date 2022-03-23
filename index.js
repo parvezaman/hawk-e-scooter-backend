@@ -97,7 +97,6 @@ async function run() {
 
       //   console.log("deleting item with id", id);
       res.json(result);
-      res.send("deleted");
     });
     // just a comment
     // payment
