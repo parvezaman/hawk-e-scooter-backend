@@ -96,7 +96,6 @@ async function run() {
       const result = await packagesCollection.deleteOne(query);
       res.json(result);
     });
-    // just a comment
     // payment
     // report
     // coupon
