@@ -16,7 +16,17 @@ app.use(
 );
 
 // Middleware
-app.use(cors());
+app.use(
+  cors((options) => {
+    options.AddPolicy(_corsName, (builder) => {
+      builder
+        .AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader()
+        .AllowCredentials();
+    });
+  })
+);
 app.use(express.json());
 
 // Mongodb Connection
